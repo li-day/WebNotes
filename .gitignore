@@ -1,0 +1,10 @@
+node_modules
+/docs/.vitepress/*
+package-lock.json
+*.zip
+*.log
+.idea
+.vscode
+dist
+*.7z
+*.tar

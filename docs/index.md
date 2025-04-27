@@ -1,0 +1,31 @@
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+  name: "li的学习笔记"
+  text: "一个前端垃圾佬"
+  tagline: 一个路过的前端垃圾佬的救赎
+  actions:
+    - theme: brand
+      text: 前端笔记
+      link: /notes/web
+    - theme: alt
+      text: 记录问题
+      link: /api-examples
+    - theme: alt
+      text: 插件
+      link: /plugins
+
+features:
+  - icon: 🍫
+    title: 笔尖下的救赎：一个垃圾佬的学习笔记
+    details: 这个世界总在催促我们 “向前看”，但别忘了：真正的成长，是带着过去的光，照亮未来的路。当你被焦虑追赶得喘不过气时，不妨按下暂停键
+  - icon: 🍉
+    title: 笔尖下的清醒：在记录中与问题和解
+    details: 我们总以为 “解决问题” 是成长的终点，却忽略了：真正的进步，始于勇敢地把问题摊开在阳光下。记录问题不是对困境的妥协，而是给思维一个整理的契机 —— 让混沌的情绪有处可栖，让隐藏的答案浮出水面。
+  - icon: 🍋
+    title: 来自垃圾佬的推荐
+    details: 在信息爆炸的时代，「插件」就像给软件装上 “智能外挂”—— 无需颠覆习惯，只需轻轻一点，就能解锁隐藏功能，让日常操作从 “机械重复” 升级为 “丝滑高效”
+---
+
