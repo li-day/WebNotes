@@ -50,6 +50,13 @@
 
 4. 在控制台运行`go run main.go`
 
+5. 常用的指令
+
+   1. 运行指令`go run xxx.go `
+   2. 打包指令`go build xxx.go`   生成一个xxx.exe文件
+   3. 格式化指令`go fmt xxx.go`
+
+
 # 2.Go语言学习正文
 
 >废话少说，干就完了
@@ -199,3 +206,88 @@ func main() {
 
 ```
 
+
+
+### 4.定义常量
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// 常量通过 const 声明 声明就需要赋值
+	const a = 'a'
+	fmt.Println(a)
+	// 常量的值不可以改变
+	// a = 'a1' // 错误无法运行代码
+
+	// 多个常量声明
+	const (
+		a1 = "a1"
+		a2 = "a2"
+	)
+	fmt.Println(a1, a2)
+
+	// const 同时声明多个常量,如果省略了值则表示和上面一行的值相同
+
+	const (
+		b1 = 1
+		b2
+		b3
+		b4
+	)
+
+	fmt.Println(b1, b2, b3, b4)
+
+	//	const 常量结合iota的使用  ps: iota是golang语言的常量计数器,只能在常量表达式中使用
+	// iota在const 关键字出现时将被重置为 0 (const 内部的第一行之前)
+	const c1 = iota
+	fmt.Println(c1) // 0
+
+	// const 中每新增一行常量的声明将使iota计数一次(iota可理解为const语句中的行索引)
+	const (
+		c2 = iota
+		c3
+		c4
+		c5
+	)
+	fmt.Println(c2, c3, c4, c5) // 0 1 2 3
+
+	// const iota 使用 _ 跳过某些值
+	const (
+		c6 = iota
+		c7
+		_
+		c8
+	)
+
+	fmt.Println(c6, c7, c8) // 0 1 3
+
+	//	iota声明中插队
+	const (
+		cc1 = iota
+		cc2 = 100
+		cc3 = iota
+		cc4
+	)
+
+	fmt.Println(cc1, cc2, cc3, cc4) // 0 100 2 3
+
+	// 多个iota可以定义一行
+	const (
+		ccc1, ccc2 = iota + 10, iota + 100 // 10 100
+		ccc3, ccc4                         // 11  101
+		ccc5, cc6                          // 12 102
+	)
+	fmt.Println(ccc1, ccc2, ccc3, ccc4, ccc5, cc6)
+
+}
+
+```
+
+>ps: iota是golang语言的常量计数器,只能在常量表达式中使用
+>
+>iota在const 关键字出现时将被重置为 0 (const 内部的第一行之前),const 中每新增一行常量的声明将使iota计数一次(iota可理解为const语句中的行索引)
+>
+>
