@@ -14,7 +14,7 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: '笔记',
+          text: '前端笔记',
           collapsed: false,
           items: [
             { text: 'HTML', link: '/notes/web' },
@@ -24,6 +24,15 @@ export default defineConfig({
             { text: 'Vue', link: '/notes/vue' },
             { text: 'React', link: '/notes/react' },
             { text: '小程序', link: '/notes/miniprogram' }
+          ]
+        },
+        {
+          text: '后端技术笔记',
+          items: [
+            {
+              text: 'Go语言',
+              link: '/notes/Go'
+            }
           ]
         },
         {
@@ -37,15 +46,25 @@ export default defineConfig({
           items: [
             { text: 'HTML', link: '/notes/web' },
             { text: 'CSS', link: '/notes/CSS' },
-            { text: 'JavaScript', link: '/notes/JavaScript' }
+            { text: 'JavaScript', link: '/notes/JavaScript' },
+            { text: 'TypeScript', link: '/notes/TypeScript' },
           ]
         },
         {
           text: '前端框架',
           items: [
-            { text: 'TypeScript', link: '/notes/TypeScript' },
+
             { text: 'Vue', link: '/notes/vue' },
             { text: 'React', link: '/notes/react' }
+          ]
+        },
+        {
+          text: '后端技术笔记',
+          items: [
+            {
+              text: 'Go语言',
+              link: '/notes/Go'
+            }
           ]
         }
       ],

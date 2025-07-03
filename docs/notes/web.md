@@ -6671,7 +6671,7 @@ http.createServer((req, res) => {
         try {
             fs.readFileSync(path.join(__dirname, 'data', 'game.jpg'), (err, data)=>{
                 // 读取成功 设置content-type
-                res.setHeader('content-type','image/jpeg')
+                res.setHeader('content-type','assets/jpeg')
                 res.end(data)                
             })
         } catch (err) {
@@ -6685,7 +6685,7 @@ http.createServer((req, res) => {
                 res.end()
             } else {
                 // 读取成功 设置content-type
-                res.setHeader('content-type','image/jpeg')
+                res.setHeader('content-type','assets/jpeg')
                 res.end(data)
             }
         })

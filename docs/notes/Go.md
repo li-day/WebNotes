@@ -16,7 +16,7 @@
 1. 这个没什么好说的，根据上面地址下载对应的软件双击下一步下一步就完了。
 2. 安装完成后需要验证一下Go语言有没有安装成功
    1. 运行一下`go version`
-      1. ![image-20250630112044711](C:\Users\24978\AppData\Roaming\Typora\typora-user-images\image-20250630112044711.png)	
+      1. ![示例图片](/image/image-20250630112044711.png)
       2. 
 
 
