@@ -388,3 +388,131 @@ func main() {
 
 ```
 
+
+
+### 2.浮点型 float
+
+>Go语言支持两种浮点型数:
+>
+>1. float32
+>   1. 最大范围约为3.4e38
+>      1. 可使用常量定义: `math.MaxFloat32`
+>2. float64
+>   1. 最大范围约为1.8e308
+>   2. 可使用常量定义: `math.MaxFloat64`
+>
+>这两种浮点型数据格式遵循IEEE 754标准.
+>
+>
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/shopspring/decimal"
+	"unsafe"
+)
+
+func main() {
+
+	// 1.定义float类型
+	var a float32 = 3.12
+
+	fmt.Printf("a=%v, 类型: %T\n", a, a)
+	fmt.Println(unsafe.Sizeof(a)) // float32 占用4个字节
+
+	var a1 float64 = 3.12
+	fmt.Printf("a=%v, 类型: %T\n", a1, a1)
+	fmt.Println(unsafe.Sizeof(a1)) // float32 占用8个字节
+
+	// 2. %f 输出float类型 %.2f 输出数据的时候保留2位小数
+	var a2 float32 = 3.126458512546
+	fmt.Printf("a2=%f\n", a2) // 默认六位小数 五舍六入
+	fmt.Printf("a2=%.2f\n", a2)
+
+	// 3. Go语言中浮点数默认是 根据系统来 64位的系统就是 float64 32位的系统就是 float32
+
+	a3 := 3.141592653589793
+	fmt.Printf("a3=%v, 类型: %T\n", a3, a3)
+
+	// 4.Golang 科学计数法表示浮点类型
+	var a4 float32 = 3.14e2 // 表示3.14 * 10的2次方
+	fmt.Printf("a4=%v, 类型: %T\n", a4, a4)
+
+	var a5 float32 = 3.14e-2 // 表示3.14 / 10的2次方
+	fmt.Printf("a5=%v, 类型: %T\n", a5, a5)
+
+	//	Golang 中 float 精度丢失的问题 几乎所有的编程语言都会有精度丢失的问题,这个是典型的二进制浮点数精度损失问题
+
+	var a6 float64 = 1129.6
+	fmt.Println(a6 * 100) // 期望112960 实际 112959.99999999999
+
+	m1, m2 := 8.2, 3.8
+	fmt.Println(m1 - m2) // 期望4.4 实际 4.3999999999999995
+
+	//  可以使用第三方插件解决问题
+	m3 := decimal.NewFromFloat(m1).Sub(decimal.NewFromFloat(m2))
+	fmt.Println(m3) // 4.4
+
+	// int 转 float
+	var b1 int = 12
+	b2 := float64(b1)
+	fmt.Printf("b1类型: %T, b2类型: %T\n", b1, b2)
+
+	// float 转 int  会截取丢失数据 不建议转换
+	var b3 float64 = 1.723
+	b4 := int(b3)
+	fmt.Printf("b4=%v, 类型: %T\n", b4, b4)
+}
+
+```
+
+
+
+### 3.布尔型 bool
+
+>Go 语言中以bool类型进行声明布尔型数据, 布尔型数据只有 true 和 false 两个值
+>
+>注意: 
+>
+>1. 布尔型变量默认是false
+>2. Go 语言中不允许将整型强制转化为布尔型
+>3. 布尔型无法参加数值运算, 也无法与其他的类型进行转换
+>
+>
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	// 1.布尔型变量默认是false
+	var a bool
+	fmt.Printf("a=%v, 类型: %T\n", a, a)
+
+	//	2. Go 语言中不允许将整型强制转化为布尔型
+	//var a1 = 1
+	//if a1 { // 错误无法 运行报错
+	//	fmt.Println("true")
+	//}
+
+	var a1 = true
+	if a1 {
+		fmt.Println("true")
+	}
+
+	// 3.布尔型无法参加数值运算, 也无法与其他的类型进行转换
+	//a2 := 1
+	//a3 := a2 + a1 // 报错了
+
+	//var aa1 = "this is string"
+	//if aa1 { // 运行报错了
+	//	fmt.Println("true")
+	//}
+}
+
+```
+
