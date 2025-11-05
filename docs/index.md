@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: 前端笔记
-      link: /notes/web
+      link: /notes/html
     - theme: alt
       text: 记录问题
-      link: /api-examples
+      link: /commonProblem/常见问题处理
     - theme: alt
       text: 插件
       link: /plugins

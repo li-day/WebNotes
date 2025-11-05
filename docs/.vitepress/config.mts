@@ -11,14 +11,17 @@ export default defineConfig({
       { text: '开始', link: '/directory' },
       {text: '更新记录', link: '/updateHistory/index'}
     ],
+    outline: {
+      level: [2, 6],
+    },
     sidebar: {
       '/': [
         {
           text: '前端笔记',
           collapsed: false,
           items: [
-            { text: 'HTML', link: '/notes/web' },
-            { text: 'CSS', link: '/notes/CSS' },
+            { text: 'HTML', link: '/notes/html' },
+            { text: 'CSS', link: '/notes/css' },
             { text: 'JavaScript', link: '/notes/JavaScript' },
             { text: 'TypeScript笔记', link: '/notes/TypeScript' },
             { text: 'Vue', link: '/notes/vue' },
@@ -37,17 +40,22 @@ export default defineConfig({
         },
         {
           text: '记录问题',
-          items: []
+          items: [
+            {
+              text: 'web前端常见问题',
+              link: '/commonProblem/常见问题处理'
+            }
+          ]
         }
       ],
       '/notes/': [
         {
           text: 'Web 技术',
           items: [
-            { text: 'HTML', link: '/notes/web' },
-            { text: 'CSS', link: '/notes/CSS' },
+            { text: 'HTML', link: '/notes/html' },
+            { text: 'CSS', link: '/notes/css' },
             { text: 'JavaScript', link: '/notes/JavaScript' },
-            { text: 'TypeScript', link: '/notes/TypeScript' },
+            
           ]
         },
         {
@@ -55,7 +63,13 @@ export default defineConfig({
           items: [
 
             { text: 'Vue', link: '/notes/vue' },
-            { text: 'React', link: '/notes/react' }
+            { text: 'React', link: '/notes/react' },
+            { text: 'TypeScript', link: '/notes/TypeScript' },
+            {text: 'jQuery', link: '/notes/jQuery'},
+            {
+              text: 'Node.js',
+              link: '/notes/nodeJs'
+            }
           ]
         },
         {
@@ -66,21 +80,39 @@ export default defineConfig({
               link: '/notes/Go'
             }
           ]
+        },
+        {
+          text: '工具',
+          items: [
+            { text: 'Git常用指令', link: '/notes/git' },
+            { text: 'npm常用指令', link: '/notes/npm' }
+          ]
         }
       ],
       '/updateHistory/': [
         {
           text: '更新记录',
           items: [
-            { text: 'HTML', link: '/notes/web' },
-            { text: 'CSS', link: '/notes/CSS' },
+            { text: 'HTML', link: '/notes/html' },
+            { text: 'CSS', link: '/notes/css' },
+          ]
+        }
+      ],
+      '/commonProblem/': [
+         {
+          text: '记录问题',
+          items: [
+            {
+              text: 'web前端常见问题',
+              link: '/commonProblem/常见问题处理'
+            }
           ]
         }
       ]
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-github-username' }
-    ]
+    // socialLinks: [
+    //   { icon: 'github', link: 'https://github.com/your-github-username' }
+    // ]
   },
   markdown: {
     lineNumbers: true,
