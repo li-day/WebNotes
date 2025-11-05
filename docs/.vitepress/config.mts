@@ -69,6 +69,10 @@ export default defineConfig({
             {
               text: 'Node.js',
               link: '/notes/nodeJs'
+            },
+            {
+              text: 'StencilJs 一个web component框架',
+              link: '/notes/stencilJs'
             }
           ]
         },
