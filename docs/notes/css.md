@@ -1,397 +1,288 @@
-# CSS核心知识点整理
-## 一、基础语法与引入方式
-### 1. 语法结构
-```css
-/* 选择器：要样式化的元素 */
-选择器 {
-  /* 属性：样式名称；值：样式具体效果 */
-  属性1: 值1;
-  属性2: 值2;
-}
-```
+# CSS单词库整合手册
+## 一、CSS基础引入与嵌套
+| 功能描述 | 语法/代码示例 | 说明 |
+|----------|---------------|------|
+| CSS引入 | `<link rel="stylesheet" href="css文件路径">` | 外部引入CSS文件的标准语法 |
+| 中文转URI码 | `encodeURI('转码内容')` | 将中文等特殊字符转换为URI编码 |
+| URI码转中文 | `decodeURI('URI编码内容')` | 将URI编码还原为中文 |
+| 嵌套网页 | `<iframe src="目标页面路径" width="100%" height="310px" frameborder="0"></iframe>` | 嵌入其他网页，frameborder="0"隐藏边框 |
 
-### 2. 引入方式
-| 引入方式 | 语法 | 特点 |
+## 二、视口设置（移动端核心）
+| 属性 | 语法示例 | 功能说明 |
+|------|----------|----------|
+| 视口元标签 | `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">` | 适配移动端显示 |
+| width=device-width | - | 视口宽度等于设备屏幕宽度 |
+| initial-scale | initial-scale=1.0 | 页面初次显示的缩放比例 |
+| maximum-scale | maximum-scale=1.0 | 页面最大缩放比例 |
+| user-scalable | user-scalable=0 | 0为禁止用户缩放，1为允许 |
+
+## 三、基础样式属性
+### 3.1 宽高与盒模型
+| 属性 | 语法示例 | 功能说明 |
+|------|----------|----------|
+| 宽度 | `width: 12px;` / `width: 100%;` | 设置元素宽度，支持固定值和百分比 |
+| 高度 | `height: 12px;` / `height: auto;` | 设置元素高度，auto为自动适应内容 |
+| 标准盒模型 | `box-sizing: content-box;` | border和padding向外扩展（默认） |
+| CSS3盒模型 | `box-sizing: border-box;` | border和padding向内扩展，不改变元素总宽高 |
+
+### 3.2 字体属性
+| 属性 | 语法示例 | 取值说明 |
+|------|----------|----------|
+| 字体类型 | `font-family: "宋体", "Microsoft YaHei";` | 指定字体，多个字体用逗号分隔，优先级从左到右 |
+| 字体大小 | `font-size: 12px;` / `font-size: calc(375px / 6.4);` | 支持固定值、calc计算 |
+| 字体粗细 | `font-weight: 400;` / `font-weight: normal;` / `font-weight: bold;` | 100-900取值，400=normal，700=bold，无单位 |
+| 字体样式 | `font-style: italic;` / `font-style: normal;` | italic为斜体，normal为正常样式 |
+| 复合属性 | `font: font-style font-weight font-size/line-height font-family;` | 示例：`font: italic 700 16px 'Microsoft YaHei';`，顺序不可乱 |
+
+### 3.3 文本属性
+| 属性 | 语法示例 | 功能说明 |
+|------|----------|----------|
+| 文本颜色 | `color: red;` / `color: #ff0000;` / `color: rgb(255,0,0);` | 支持英文单词、十六进制、RGB格式 |
+| 文本对齐 | `text-align: center;` / `text-align: left;` / `text-align: right;` | 文本水平对齐方式 |
+| 两端对齐 | `text-align: justify;` + `text-align-last: justify;` | 使文本铺满容器宽度（Edge浏览器适配） |
+| 文本装饰 | `text-decoration: none;` / `underline;` / `overline;` / `line-through;` | none取消下划线（常用于a标签），underline下划线，overline上划线，line-through删除线 |
+| 首行缩进 | `text-indent: 2em;` | 首行缩进2个字符宽度 |
+| 行高 | `line-height: 26px;` | 设置行间距，可用于垂直居中 |
+| 字符间距 | `letter-spacing: 2px;` | 单个字符之间的间距 |
+| 单词间距 | `word-spacing: 25px;` | 英文单词之间的间距 |
+
+### 3.4 背景属性
+| 属性 | 语法示例 | 取值说明 |
+|------|----------|----------|
+| 背景颜色 | `background-color: red;` / `background: rgba(125,125,125,0.5);` | rgba支持半透明，不影响内容 |
+| 背景图片 | `background-image: url(图片路径);` | 引入背景图片 |
+| 背景平铺 | `background-repeat: no-repeat;` / `repeat-x;` / `repeat-y;` | no-repeat不平铺，repeat-x横向平铺，repeat-y纵向平铺 |
+| 背景位置 | `background-position: top right;` / `100px 50px;` | 支持方位名词、固定单位，先水平后垂直 |
+| 背景固定 | `background-attachment: fixed;` / `scroll;` | fixed背景不随滚动条移动，scroll跟随移动 |
+| 背景大小 | `background-size: cover;` / `contain;` / `1000px 500px;` | cover完全覆盖盒子，contain完全包含在盒子内 |
+| 背景复合写法 | `background: red url("图片路径") no-repeat fixed 20px 20px;` | 顺序：颜色 图片 平铺 固定 位置 |
+| 渐变色背景 | `background-image: linear-gradient(to right, red 50%, yellow 70%, blue);` | 线性渐变，支持多颜色节点 |
+
+### 3.5 边框属性
+| 属性 | 语法示例 | 取值说明 |
+|------|----------|----------|
+| 边框复合写法 | `border: 10px solid yellowgreen;` | 顺序：宽度 样式 颜色 |
+| 单边边框 | `border-right: 20px dashed red;` | 支持left/top/right/bottom，样式：solid实线、dashed虚线、dotted点线 |
+| 边框合并 | `border-collapse: collapse;` | 用于表格，合并相邻边框 |
+| 边框圆角 | `border-radius: 10px;` / `border-radius: 50%;` | 数值为圆角半径，50%可实现圆形（需宽高相等） |
+| 边框图片 | `border-image: url("边框图片路径") 167/20px round;` | 组合写法：路径 截取距离/边框宽度 排布方式 |
+| 边框图片截取 | `border-image-slice: 167 167 167 167;` | 顺时针方向截取边框图片四个角 |
+| 边框图片排布 | `border-image-repeat: repeat;` / `round;` / `stretch;` | repeat平铺，round环绕，stretch拉伸 |
+
+### 3.6 内边距与外边距
+| 属性 | 语法示例 | 功能说明 |
+|------|----------|----------|
+| 内边距（padding） | 复合写法：`padding: 20px;` / `20px 50px;` / `20px 50px 80px 100px;` | 分别对应：四边相同、上下/左右、上/右/下/左 |
+| 单边内边距 | `padding-left: 20px;` | 支持top/right/bottom/left |
+| 外边距（margin） | 复合写法：`margin: 50px 100px;` | 写法同padding |
+| 单边外边距 | `margin-top: 20px;` | 支持top/right/bottom/left |
+| 块元素居中 | `margin: 0 auto;` | 水平居中，需设置宽度 |
+| 溢出处理 | `overflow: hidden;` / `visible;` / `scroll;` / `auto;` | hidden溢出隐藏，scroll强制显示滚动条，auto自动判断 |
+
+## 四、选择器
+### 4.1 基础选择器与伪类
+| 选择器类型 | 语法示例 | 功能说明 |
+|------------|----------|----------|
+| 链接伪类（LVHA顺序） | `a:link{}` / `a:visited{}` / `a:hover{}` / `a:active{}` | link未访问，visited已访问，hover鼠标经过，active鼠标按下 |
+| input聚焦伪类 | `input:focus{}` | 选择获取光标的input元素 |
+| 结构伪类 | `:first-child` / `:last-child` / `:nth-child(even)` / `:nth-child(odd)` | 分别对应：第一个子元素、最后一个子元素、偶数子元素、奇数子元素 |
+| 排除伪类 | `:not(:last-child)` | 选择除最后一个子元素外的所有元素 |
+| 类型伪类 | `:first-of-type` / `:last-of-type` / `:nth-of-type(n)` | 按元素类型选择对应位置的元素 |
+| 选中伪类 | `:checked` | 匹配选中的单选框、复选框等元素 |
+
+### 4.2 伪元素
+| 伪元素 | 语法示例 | 功能说明 |
+|--------|----------|----------|
+| 内容前插入 | `div::before{ content: ""; display: block; }` | 在元素内容前创建虚拟元素，默认行内元素 |
+| 内容后插入 | `div::after{ content: ""; display: block; }` | 在元素内容后创建虚拟元素，默认行内元素 |
+
+## 五、布局相关
+### 5.1 显示模式
+| 显示属性 | 语法示例 | 功能说明 |
+|----------|----------|----------|
+| 块元素 | `display: block;` | 独占一行，可设置宽高，行内元素转块元素 |
+| 行内元素 | `display: inline;` | 不独占一行，不可设置宽高，块元素转行内元素 |
+| 行内块元素 | `display: inline-block;` | 不独占一行，可设置宽高 |
+| 消除行内块缝隙 | `父元素font-size: 0;` | 解决inline-block元素之间的默认间距 |
+| 隐藏元素（不占位） | `display: none;` | 元素隐藏且不占据页面空间 |
+| 隐藏元素（占位） | `visibility: hidden;` | 元素隐藏但保留占位空间 |
+| 显示元素 | `visibility: visible;` | 元素正常显示 |
+
+### 5.2 浮动布局
+| 浮动属性 | 语法示例 | 功能说明 |
+|----------|----------|----------|
+| 左浮动 | `float: left;` | 元素向左浮动 |
+| 右浮动 | `float: right;` | 元素向右浮动 |
+| 中间浮动 | `float: content;` | 元素向中间浮动 |
+| 清除浮动-额外标签法 | `<div style="clear: both;"></div>` | 在最后一个浮动元素后添加块级元素 |
+| 清除浮动-overflow法 | `父元素{ overflow: hidden; }` | 给浮动元素的父容器添加 |
+| 清除浮动-伪元素法 | `.clearfix::after{ content: ""; display: block; clear: both; height: 0; visibility: hidden; }` + `.clearfix{ *zoom: 1; }` | 兼容各浏览器，不添加额外标签 |
+| 清除浮动-双伪元素法 | `.clearfix::before,.clearfix::after{ content: ""; display: table; }` + `.clearfix::after{ clear: both; }` + `.clearfix{ *zoom: 1; }` | 更完善的清除浮动方案 |
+
+### 5.3 弹性布局（Flex）
+| 属性 | 语法示例 | 取值说明 | 适用对象 |
+|------|----------|----------|----------|
+| 开启弹性布局 | `display: flex;` | - | 父元素 |
+| 主轴排列 | `justify-content: flex-start;` | flex-start（左到右）、center（居中）、flex-end（右到左）、space-between（等距分隔）、space-around（等距环绕）、space-evenly（平均分） | 父元素 |
+| 次轴排列（单行） | `align-items: flex-start;` | flex-start（靠上）、center（居中）、flex-end（靠下）、baseline（文字基线对齐）、stretch（拉伸填满） | 父元素 |
+| 换行设置 | `flex-wrap: wrap;` | nowrap（不换行）、wrap（向下换行）、wrap-reverse（向上换行） | 父元素 |
+| 次轴排列（多行） | `align-content: flex-start;` | 取值同justify-content | 父元素 |
+| 主轴方向 | `flex-direction: row;` | row（水平左到右）、row-reverse（水平右到左）、column（垂直上到下）、column-reverse（垂直下到上） | 父元素 |
+| 子元素占比 | `flex: 1;` | 数值表示子元素对剩余空间的占比 | 子元素 |
+| 子元素排序 | `order: -1;` | 默认0，值越小越靠前 | 子元素 |
+| 单个子元素次轴排列 | `align-self: flex-start;` | 取值同align-items，单独控制某个子元素 | 子元素 |
+
+### 5.4 网格布局（Grid）
+| 属性 | 语法示例 | 功能说明 |
+|------|----------|----------|
+| 开启网格布局 | `display: grid;` | 父元素设置 |
+| 划分网格（行） | `grid-template-rows: 100px 100px 200px;` | 定义每行高度，多个值用空格分隔 |
+| 划分网格（列） | `grid-template-columns: 200px 300px;` / `grid-template-columns: repeat(5, 20%);` | repeat(5,20%)表示5列，每列20% |
+| 网格复合写法 | `grid-template: 100px 100px 200px / 200px 300px;` | 顺序：行 列 |
+| 行间距 | `grid-row-gap: 5px;` | 网格行与行之间的间距 |
+| 列间距 | `grid-column-gap: 5px;` | 网格列与列之间的间距 |
+
+## 六、特殊效果
+### 6.1 阴影效果
+| 阴影类型 | 语法示例 | 取值说明 |
+|----------|----------|----------|
+| 盒子阴影 | `box-shadow: h-shadow v-shadow blur spread color inset;` | h-shadow（水平阴影，必需）、v-shadow（垂直阴影，必需）、blur（模糊距离）、spread（阴影尺寸）、color（阴影颜色）、inset（内部阴影） |
+| 文字阴影 | `text-shadow: h-shadow v-shadow blur color;` | 取值同box-shadow，无spread和inset |
+
+### 6.2 鼠标样式
+| 语法示例 | 效果说明 |
+|----------|----------|
+| `cursor: default;` | 默认鼠标样式（箭头） |
+| `cursor: text;` | 文本选择样式（I型） |
+| `cursor: pointer;` | 小手样式（常用于可点击元素） |
+| `cursor: move;` | 移动样式（十字箭头） |
+| `cursor: not-allowed;` | 禁止样式 |
+| `cursor: zoom-in;` | 放大样式 |
+| `cursor: none!important;` | 隐藏鼠标 |
+
+### 6.3 文本溢出处理
+| 效果 | 语法组合 | 说明 |
+|------|----------|------|
+| 单行文本溢出省略 | `white-space: nowrap; overflow: hidden; text-overflow: ellipsis;` | 必须同时设置三个属性 |
+| 多行文本溢出省略 | `overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;` | -webkit-line-clamp控制显示行数，需配合高度调整 |
+| 自动换行 | `word-wrap: break-word;` | 英文单词自动换行 |
+| 强制换行 | `word-break: break-all;` | 强制英文单词拆分换行 |
+
+### 6.4 三角形制作
+| 三角形类型 | 语法示例 | 说明 |
+|------------|----------|------|
+| 正三角形 | `width: 0; height: 0; border: 50px solid transparent; border-bottom: 50px solid yellow;` | 宽高为0，三边透明，一边有颜色 |
+| 直角三角形 | `width: 0; height: 0; border-top: 100px solid transparent; border-right: 50px solid skyblue;` | 按需设置相邻两边透明，另外一边有颜色 |
+
+### 6.5 图片相关处理
+| 功能 | 语法示例 | 说明 |
+|------|----------|------|
+| 响应式图片 | `<img src="默认图" srcset="url 2x, url 3x" alt="">` | 根据屏幕分辨率加载不同图片 |
+| 图片适配 | `object-fit: contain;` | 保持图片原有尺寸比例适配容器 |
+| 消除img底部缝隙 | `vertical-align: bottom;` / `display: block;` | 解决图片与文字对齐时的默认缝隙 |
+
+## 七、定位相关
+| 定位方式 | 语法示例 | 定位基准 | 特点 |
+|----------|----------|----------|------|
+| 相对定位 | `position: relative;` | 自身原有位置 | 不脱离文档流，可通过top/right/bottom/left偏移 |
+| 绝对定位 | `position: absolute;` | 最近一级有定位的祖先元素 | 脱离文档流，需配合相对定位使用 |
+| 固定定位 | `position: fixed;` | 浏览器窗口 | 脱离文档流，固定在窗口某个位置，不随滚动条移动 |
+| 定位居中 | `position: absolute; left: 50%; top: 50%; margin-left: -150px; margin-top: -150px; width: 300px; height: 300px;` | 先移动父元素50%，再回移自身一半宽度/高度 |
+
+## 八、过渡与变换
+### 8.1 过渡（transition）
+| 属性 | 语法示例 | 取值说明 |
+|------|----------|----------|
+| 过渡复合写法 | `transition: all 1.5s 3s ease;` | 顺序：过渡属性 持续时间 延迟时间 速度曲线 |
+| 过渡属性 | `transition-property: all;` | 指定需要过渡的样式，all表示所有样式 |
+| 持续时间 | `transition-duration: 1.5s;` | 过渡效果的时间，单位秒（s） |
+| 延迟时间 | `transition-delay: 3s;` | 延迟多久开始过渡，单位秒（s） |
+| 速度曲线 | `transition-timing-function: ease;` / `linear;` | ease默认（慢-快-慢），linear匀速 |
+
+### 8.2 2D变换（transform）
+| 变换类型 | 语法示例 | 取值说明 |
+|----------|----------|----------|
+| 偏移 | `transform: translate(x, y);` | x水平偏移，y垂直偏移，支持负值 |
+| 旋转 | `transform: rotate(360deg);` | 单位deg，正数顺时针，负数逆时针 |
+| 缩放 | `transform: scale(h, v);` | h水平缩放，v垂直缩放，0-1缩小，大于1放大 |
+| 倾斜 | `transform: skew(h, v);` | h水平倾斜角度，v垂直倾斜角度，单位deg |
+| 组合变换 | `transform: translate(100px, 0) rotate(360deg);` | 可组合多个变换，注意顺序 |
+| 变换基准点 | `transform-origin: top left;` / `100% 0;` | 默认为元素中心，可指定方位或坐标 |
+
+### 8.3 3D变换
+| 变换类型 | 语法示例 | 说明 |
+|----------|----------|------|
+| 视距设置 | `perspective: 800px;` | 父元素设置，实现近大远小的3D效果 |
+| Z轴偏移 | `transform: translateZ();` | 沿Z轴移动，正值靠近观察者 |
+| X轴旋转 | `transform: rotateX();` | 沿X轴旋转，类似翻本效果 |
+| Y轴旋转 | `transform: rotateY();` | 沿Y轴旋转，类似翻书效果 |
+| Z轴旋转 | `transform: rotateZ();` | 沿Z轴旋转，同2D的rotate() |
+
+## 九、帧动画（animation）
+| 动画相关 | 语法示例 | 说明 |
+|----------|----------|------|
+| 定义帧动画 | `@keyframes move { from{ left: 0px; } to { left: 200px; } }` | from为起始状态，to为结束状态 |
+| 百分比动画 | `@keyframes move { 0% {transform:translate(0);} 20% {transform:translate(200px,0);} 100% {transform:translate(0,400px);} }` | 支持多关键帧，0%为起始，100%为结束 |
+| 应用动画 | `animation: move 1s linear 3s infinite alternate forwards;` | 顺序：动画名 持续时间 速度曲线 延迟时间 重复次数 方向 停止状态 |
+| 动画暂停/运行 | `animation-play-state: paused;` / `running;` | paused暂停，running运行 |
+| 动画分割 | `animation: a 5s steps(5, end) infinite;` | steps(n,start/end)，n为分割段数，start第一段不参与，end最后一段不参与 |
+| 重复次数 | `animation-iteration-count: infinite;` | infinite无限次，可指定具体次数 |
+| 动画方向 | `animation-direction: alternate;` / `reverse;` | alternate往复执行，reverse反向执行 |
+| 停止状态 | `animation-fill-mode: forwards;` / `backwards;` | forwards停在结束位置，backwards停在起始位置 |
+
+## 十、媒体查询（响应式核心）
+| 语法格式 | 示例代码 | 说明 |
+|----------|----------|------|
+| 基础语法 | `@media screen and (max-width: 1200px) { .box {} }` | screen可省略，and两侧必须有空格 |
+| 区间查询 | `@media screen and (max-width: 1200px) and (min-width: 992px) {}` | 闭合区间，匹配992px-1200px的屏幕 |
+| 常见断点 | - | 大屏PC（>1200px）、小屏PC（>992px）、平板（>760px）、手机（<768px） |
+
+## 十一、Less预处理语法
+| 功能 | 语法示例 | 说明 |
+|------|----------|------|
+| 导入Less文件 | `@import "02-base.less";` | @import与文件名之间有空格，结尾加分号，可省略扩展名 |
+| 定义变量 | `@w: 100px;` | 变量名前加@，可存储尺寸、颜色等 |
+| 使用变量 | `width: @w;` | 直接引用变量名 |
+| 运算语法 | `width: @w - 50;` / `font-size: (30px / 2);` | +-*两侧需有空格，除法需加括号 |
+| 混入语法 | 定义：`.common { padding: 10px; }` 使用：`.box { .common; }` | 提取公共样式，直接引用类名 |
+
+## 十二、表单相关CSS
+| 功能 | 语法示例 | 说明 |
+|------|----------|------|
+| 取消input聚焦边框 | `input { outline: none; }` | 清除默认聚焦时的边框样式 |
+| 禁止文本域拖拽 | `resize: none;` | 用于textarea，禁止调整大小 |
+| 表单元素选中 | `input:checked{}` | 匹配选中的单选框、复选框 |
+
+## 十三、特殊字符与文本格式
+### 13.1 特殊字符
+| 显示效果 | 语法 | 说明 |
 |----------|------|------|
-| 外部样式表 | `<link rel="stylesheet" href="css文件路径">` | 分离HTML与CSS，可复用，维护方便 |
-| 内部样式表 | `<style>/* CSS代码 */</style>`（写在`<head>`中） | 单文件生效，无需额外请求 |
-| 行内样式 | `<div style="color: red;">内容</div>` | 优先级最高，仅作用于单个元素，耦合度高 |
+| > | `&gt;` | 大于号 |
+| < | `&lt;` | 小于号 |
+| 空格 | `&nbsp;` | 不换行空格 |
+| & | `&amp;` | 和号 |
+| " | `&quot;` | 双引号 |
+| ® | `&reg;` | 已注册标识 |
+| © | `&copy;` | 版权标识 |
+| ™ | `&trade;` | 商标标识 |
+| ¥ | `&yen;` | 人民币符号 |
 
-## 二、选择器
-### 1. 基础选择器
-| 选择器 | 语法 | 作用 | 示例 |
-|--------|------|------|------|
-| 元素选择器 | 标签名 | 选中所有该标签元素 | `div { color: red; }`（选中所有div） |
-| 类选择器 | `.类名` | 选中所有含该类名的元素 | `.box { width: 100px; }` |
-| ID选择器 | `#ID名` | 选中唯一含该ID的元素（ID不可重复） | `#header { height: 50px; }` |
-| 通配符选择器 | `*` | 选中页面所有元素 | `* { margin: 0; padding: 0; }`（清除默认边距） |
+### 13.2 文本格式标签
+| 效果 | 标签示例 | 说明 |
+|------|----------|------|
+| 加粗 | `<strong>文本</strong>` / `<b>文本</b>` | 两者均为加粗效果 |
+| 倾斜 | `<em>文本</em>` / `<i>文本</i>` | 两者均为倾斜效果 |
+| 删除线 | `<del>文本</del>` / `<s>文本</s>` | 两者均为删除线效果 |
+| 下划线 | `<ins>文本</ins>` / `<u>文本</u>` | 两者均为下划线效果 |
 
-### 2. 伪类选择器
-#### 链接伪类（LVHA顺序，需严格遵循）
-| 伪类 | 作用 | 示例 |
-|------|------|------|
-| `a:link` | 未访问过的链接 | `a:link { color: #333; }` |
-| `a:visited` | 已访问过的链接 | `a:visited { color: #666; }` |
-| `a:hover` | 鼠标悬停时的链接 | `a:hover { color: red; }`（可作用于所有元素） |
-| `a:active` | 鼠标按下未弹起的链接 | `a:active { color: orange; }` |
+## 十四、权重规则
+| 选择器/语法 | 权重优先级 | 说明 |
+|-------------|------------|------|
+| `!important` | 最高 | 例：`color: red !important;`，优先执行 |
+| 行内样式 | 高 | 元素style属性中的样式 |
+| ID选择器 | 中高 | `#id{}` |
+| 类选择器 | 中 | `.class{}` |
+| 标签选择器 | 中低 | `div{}` |
+| 通配符 | 低 | `*{}` |
+| 继承样式 | 最低 | 从父元素继承的样式 |
 
-#### 表单伪类
-| 伪类 | 作用 | 示例 |
-|------|------|------|
-| `:focus` | 获得焦点的表单元素（如输入框） | `input:focus { border: 2px solid blue; }` |
-| `:checked` | 被选中的单选/复选框 | `input:checked + span { color: red; }` |
-
-#### 结构伪类
-| 伪类 | 作用 | 示例 |
-|------|------|------|
-| `:first-child` | 选中父元素的第一个子元素 | `ul li:first-child { margin-left: 0; }` |
-| `:last-child` | 选中父元素的最后一个子元素 | `ul li:last-child { margin-right: 0; }` |
-| `:nth-child(n)` | 选中父元素的第n个子元素（n可为数字/`even`偶数/`odd`奇数） | `ul li:nth-child(2) { color: red; }` |
-| `:not(选择器)` | 排除指定选择器的元素 | `ul li:not(:last-child) { margin-right: 10px; }` |
-
-### 3. 伪元素选择器
-| 伪元素 | 作用 | 示例 |
-|--------|------|------|
-| `::before` | 在元素内容**之前**插入内容（默认行内元素） | `.box::before { content: ""; display: block; width: 20px; }` |
-| `::after` | 在元素内容**之后**插入内容（默认行内元素） | `.box::after { content: "后缀"; color: #999; }` |
-| 注意 | `content`属性为必选（空值需写`content: ""`） | - |
-
-## 三、盒子模型
-### 1. 两种盒子模型
-| 模型类型 | 语法 | 宽高计算方式 | 说明 |
-|----------|------|--------------|------|
-| 标准盒模型 | `box-sizing: content-box` | 宽高 = content（内容区） | 默认模型，border和padding会使盒子整体变大 |
-| 怪异盒模型（CSS3） | `box-sizing: border-box` | 宽高 = content + padding + border | border和padding包含在宽高中，盒子整体大小不变 |
-
-### 2. 盒子核心属性
-#### 边框（`border`）
-- 复合写法：`border: 宽度 样式 颜色;`，示例：`border: 1px solid #000;`
-- 单独设置某边：`border-top`/`border-right`/`border-bottom`/`border-left`
-- 边框样式取值：`solid`（实线）、`dashed`（虚线）、`dotted`（点线）、`none`（无边框）
-
-#### 内边距（`padding`，内容与边框的距离）
-- 复合写法：
-  - `padding: 10px;`（四边均为10px）
-  - `padding: 10px 20px;`（上下10px，左右20px）
-  - `padding: 10px 20px 30px;`（上10px，左右20px，下30px）
-  - `padding: 10px 20px 30px 40px;`（上→右→下→左，顺时针）
-- 单独设置某边：`padding-top`/`padding-right`/`padding-bottom`/`padding-left`
-
-#### 外边距（`margin`，盒子与盒子的距离）
-- 写法与`padding`一致，示例：`margin: 0 auto;`（块元素水平居中）
-- 特殊现象：
-  - margin塌陷：父子元素垂直方向margin重叠，取较大值（解决：父元素加`overflow: hidden`或`border`）
-  - margin合并：相邻兄弟元素垂直margin重叠，取较大值（解决：给其中一个元素加父容器并设置`overflow: hidden`）
-
-## 四、布局相关属性
-### 1. 显示模式（`display`）
-| 值 | 作用 | 特点 | 示例元素 |
-|----|------|------|----------|
-| `block` | 块级元素 | 独占一行，可设置宽高 | `div`、`p`、`h1-h6` |
-| `inline` | 行内元素 | 不独占一行，不可设置宽高（宽高由内容决定） | `span`、`a`、`i` |
-| `inline-block` | 行内块元素 | 不独占一行，可设置宽高 | `img`、`input`、`button` |
-| `none` | 隐藏元素 | 元素不显示，不占据页面空间 | 所有元素 |
-| `flex` | 弹性布局容器 | 子元素按弹性布局排列 | 所有元素（父容器设置） |
-| `grid` | 网格布局容器 | 子元素按网格排列 | 所有元素（父容器设置） |
-
-### 2. 浮动（`float`，已逐渐被flex/grid替代，但需了解）
-| 值 | 作用 | 示例 |
-|----|------|------|
-| `left` | 元素向左浮动 | `div { float: left; }` |
-| `right` | 元素向右浮动 | `div { float: right; }` |
-| `none` | 不浮动（默认） | `div { float: none; }` |
-
-#### 清除浮动（解决浮动导致父元素高度塌陷）
-| 方法 | 语法 | 特点 |
-|------|------|------|
-| 额外标签法 | 在最后一个浮动元素后加`<div style="clear: both;"></div>` | 简单，但增加无意义标签 |
-| 父元素加`overflow` | 父元素设置`overflow: hidden;` | 简单，可能隐藏溢出内容 |
-| 伪元素清除法（推荐） | ```css .clearfix::after { content: ""; display: block; clear: both; height: 0; visibility: hidden; } .clearfix { *zoom: 1; /* 兼容IE6/7 */ } ``` | 无额外标签，通用性强 |
-
-### 3. 弹性布局（`flex`，现代布局核心）
-#### 父容器属性（作用于`display: flex`的元素）
-| 属性 | 作用 | 取值 | 示例 |
-|------|------|------|------|
-| `justify-content` | 子元素在**主轴**（默认水平）的排列方式 | `flex-start`（左对齐）、`center`（居中）、`flex-end`（右对齐）、`space-between`（两端对齐，中间间距相等）、`space-around`（等距环绕，两端间距为中间一半）、`space-evenly`（等距分布，所有间距相等） | `justify-content: space-between;` |
-| `align-items` | 子元素在**次轴**（默认垂直）的排列方式（单行） | `flex-start`（上对齐）、`center`（居中）、`flex-end`（下对齐）、`baseline`（文字基线对齐）、`stretch`（子元素高度拉伸至与父容器一致，子元素无固定高度时生效） | `align-items: center;` |
-| `flex-wrap` | 子元素是否换行 | `nowrap`（不换行，默认）、`wrap`（换行，向下）、`wrap-reverse`（换行，向上） | `flex-wrap: wrap;` |
-| `align-content` | 子元素在次轴的排列方式（多行，需配合`flex-wrap: wrap`） | 取值同`justify-content` | `align-content: center;` |
-| `flex-direction` | 修改主轴方向 | `row`（水平从左到右，默认）、`row-reverse`（水平从右到左）、`column`（垂直从上到下）、`column-reverse`（垂直从下到上） | `flex-direction: column;` |
-
-#### 子元素属性（作用于flex容器的子元素）
-| 属性 | 作用 | 取值 | 示例 |
-|------|------|------|------|
-| `flex` | 子元素对父容器剩余空间的占比 | 数字（如`1`、`2`，值越大占比越大） | `flex: 1;`（子元素均分剩余空间） |
-| `order` | 子元素排列顺序 | 数字（默认0，值越小越靠前） | `order: -1;`（子元素排在最前面） |
-| `align-self` | 单独设置子元素在次轴的排列方式（覆盖父容器`align-items`） | 取值同`align-items` | `align-self: flex-end;`（该子元素下对齐） |
-
-### 4. 网格布局（`grid`，适合复杂网格排列）
-#### 父容器核心属性
-| 属性 | 作用 | 示例 |
-|------|------|------|
-| `grid-template-rows` | 定义网格**行高** | `grid-template-rows: 100px 100px;`（2行，每行高100px） |
-| `grid-template-columns` | 定义网格**列宽** | `grid-template-columns: 200px 300px;`（2列，列宽200px、300px） |
-| `grid-template-columns: repeat(5, 20%);` | 5列，每列宽20% |
-| `grid-row-gap` | 行与行之间的间距 | `grid-row-gap: 10px;` |
-| `grid-column-gap` | 列与列之间的间距 | `grid-column-gap: 10px;` |
-| 复合写法 | `grid-template: 100px 100px / 200px 300px;`（rows / columns） |
-
-## 五、字体与文本样式
-### 1. 字体属性（`font`相关）
-| 属性 | 作用 | 取值/示例 |
-|------|------|-----------|
-| `font-family` | 字体类型 | `font-family: "Microsoft YaHei", sans-serif;`（优先微软雅黑，无则用无衬线字体） |
-| `font-size` | 字体大小 | `font-size: 16px;`（默认16px，推荐用`px`或`rem`） |
-| `font-weight` | 字体粗细 | `normal`（400，默认）、`bold`（700，加粗）、`100-900`（数字，无单位） |
-| `font-style` | 字体风格 | `normal`（默认）、`italic`（斜体） |
-| 复合写法 | `font: font-style font-weight font-size/line-height font-family;`（顺序不可乱，`font-size`和`font-family`必写） | `font: italic 700 16px/24px "Microsoft YaHei";` |
-
-### 2. 文本属性（`text`相关）
-| 属性 | 作用 | 取值/示例 |
-|------|------|-----------|
-| `color` | 文本颜色 | `color: red;`、`color: #ff0000;`、`color: rgb(255,0,0);`、`color: rgba(255,0,0,0.5);`（半透明） |
-| `text-align` | 文本水平对齐 | `left`（左对齐）、`center`（居中）、`right`（右对齐）、`justify`（两端对齐，需配合`text-align-last: justify`兼容Edge） |
-| `text-decoration` | 文本装饰线 | `none`（无装饰线，常用于取消`a`标签下划线）、`underline`（下划线）、`overline`（上划线）、`line-through`（删除线） |
-| `text-indent` | 首行缩进 | `text-indent: 2em;`（2个字符宽度，`em`为相对单位，相对于当前字体大小） |
-| `line-height` | 行高（文本上下间距） | `line-height: 24px;`（固定值）、`line-height: 1.5;`（倍数，相对于字体大小） |
-| `letter-spacing` | 字符间距 | `letter-spacing: 2px;`（字符之间的距离） |
-| `word-spacing` | 单词间距 | `word-spacing: 10px;`（英文单词之间的距离，中文无效） |
-
-### 3. 文本溢出处理
-#### 单行文本溢出显示省略号
-```css
-white-space: nowrap; /* 文本不换行 */
-overflow: hidden;    /* 溢出内容隐藏 */
-text-overflow: ellipsis; /* 溢出部分显示省略号 */
-```
-
-#### 多行文本溢出显示省略号（需固定高度）
-```css
-overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box; /* 弹性盒模型 */
--webkit-line-clamp: 2; /* 显示2行，超出省略 */
--webkit-box-orient: vertical; /* 文本垂直排列 */
-```
-
-## 六、背景与边框样式
-### 1. 背景属性（`background`相关）
-| 属性 | 作用 | 取值/示例 |
-|------|------|-----------|
-| `background-color` | 背景颜色 | `background-color: #f5f5f5;` |
-| `background-image` | 背景图片 | `background-image: url("./images/bg.jpg");`（需写`url()`，路径为图片地址） |
-| `background-repeat` | 背景图片平铺方式 | `repeat`（默认，纵横平铺）、`no-repeat`（不平铺）、`repeat-x`（水平平铺）、`repeat-y`（垂直平铺） |
-| `background-position` | 背景图片位置 | 方位词（`top`/`center`/`bottom`/`left`/`right`）或数值（`background-position: 50px 100px;`，水平→垂直） |
-| `background-attachment` | 背景图片是否随滚动条滚动 | `scroll`（默认，随滚动）、`fixed`（固定，不随滚动） |
-| `background-size` | 背景图片大小 | `cover`（图片等比缩放，完全覆盖容器，可能裁剪）、`contain`（图片等比缩放，完全放入容器，可能留空）、`100px 200px`（固定宽高）、`50%`（相对于容器宽高） |
-| 复合写法 | `background: 颜色 图片 平铺 固定 位置/大小;` | `background: #f5f5f5 url("./bg.jpg") no-repeat fixed center/cover;` |
-
-#### 背景渐变（`background-image: linear-gradient()`）
-```css
-/* 从左到右，红色→黄色→蓝色，渐变断点50%、70% */
-background-image: linear-gradient(to right, red 50%, yellow 70%, blue);
-```
-
-### 2. 边框进阶样式
-#### 边框圆角（`border-radius`）
-| 写法 | 作用 | 示例 |
-|------|------|------|
-| `border-radius: 10px;` | 四边角均为10px圆角 | - |
-| `border-radius: 10px 20px;` | 左上、右下10px；右上、左下20px | - |
-| `border-radius: 50%;` | 正圆形（需容器宽高相等）或椭圆形（宽高不等） | - |
-
-#### 盒子阴影（`box-shadow`）
-语法：`box-shadow: 水平阴影 垂直阴影 模糊距离 阴影大小 阴影颜色 内阴影;`
-示例：
-```css
-/* 外阴影：水平10px，垂直10px，模糊5px，大小3px，红色半透明 */
-box-shadow: 10px 10px 5px 3px rgba(255,0,0,0.5);
-/* 内阴影：在最后加inset */
-box-shadow: 5px 5px 10px rgba(0,0,0,0.3) inset;
-```
-
-#### 文字阴影（`text-shadow`）
-语法：`text-shadow: 水平阴影 垂直阴影 模糊距离 阴影颜色;`
-示例：
-```css
-text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 文字添加黑色半透明阴影 */
-```
-
-## 七、CSS3进阶特性
-### 1. 过渡（`transition`，平滑动画效果）
-语法：`transition: 过渡属性 过渡时间 延迟时间 速度曲线;`
-| 取值 | 作用 | 示例 |
-|------|------|------|
-| 过渡属性 | 要过渡的CSS属性（`all`表示所有属性） | `transition-property: width;` |
-| 过渡时间 | 动画持续时间（单位：s/ms，必写） | `transition-duration: 0.5s;` |
-| 延迟时间 | 动画延迟开始时间（单位：s/ms） | `transition-delay: 0.2s;` |
-| 速度曲线 | 动画速度变化 | `ease`（默认，慢→快→慢）、`linear`（匀速）、`ease-in`（慢→快）、`ease-out`（快→慢） |
-
-示例：
-```css
-/* 鼠标悬停时，宽度从100px过渡到200px，持续0.5s，匀速 */
-.box {
-  width: 100px;
-  transition: width 0.5s linear;
-}
-.box:hover {
-  width: 200px;
-}
-```
-
-### 2. 2D变换（`transform`，元素变形）
-| 变换类型 | 语法 | 作用 | 示例 |
-|----------|------|------|------|
-| 平移 | `translate(x, y)` | 元素沿x轴、y轴平移（单位：px/%） | `transform: translate(50px, 30px);`（向右50px，向下30px） |
-| 旋转 | `rotate(角度)` | 元素顺时针/逆时针旋转（单位：deg，正数顺时针，负数逆时针） | `transform: rotate(30deg);`（顺时针旋转30度） |
-| 缩放 | `scale(x, y)` | 元素沿x轴、y轴缩放（数值，1为原大小，>1放大，<1缩小） | `transform: scale(1.2, 0.8);`（水平放大1.2倍，垂直缩小0.8倍） |
-| 倾斜 | `skew(x角度, y角度)` | 元素沿x轴、y轴倾斜（单位：deg） | `transform: skew(10deg, 5deg);`（水平倾斜10度，垂直倾斜5度） |
-| 复合变换 | 多个变换组合（注意顺序：平移在前，旋转在后，避免旋转影响方向） | `transform: translate(50px) rotate(30deg);` |
-
-#### 变换基准点（`transform-origin`）
-默认基准点为元素中心点（`50% 50%`），可修改：
-```css
-transform-origin: top left; /* 基准点为左上角 */
-transform-origin: 100px 200px; /* 基准点为元素内(100px,200px)位置 */
-```
-
-### 3. 3D变换（`transform`+`perspective`）
-- 需先给父容器设置`perspective: 800px;`（视距，值越小3D效果越明显）
-- 常用3D变换：
-  | 语法 | 作用 | 示例 |
-  |------|------|------|
-  | `translateZ(z)` | 元素沿z轴平移（z值越大，元素越靠前） | `transform: translateZ(50px);` |
-  | `rotateX(角度)` | 元素沿x轴旋转（类似"翻书"效果） | `transform: rotateX(45deg);` |
-  | `rotateY(角度)` | 元素沿y轴旋转（类似"开门"效果） | `transform: rotateY(90deg);` |
-
-### 4. 帧动画（`@keyframes`+`animation`，复杂动画）
-#### 步骤1：定义帧动画
-```css
-/* 动画名：move，从左到右平移 */
-@keyframes move {
-  from { /* 动画开始状态 */
-    transform: translateX(0);
-  }
-  to { /* 动画结束状态 */
-    transform: translateX(200px);
-  }
-}
-
-/* 或用百分比定义多关键帧（更灵活） */
-@keyframes move {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(150px) rotate(30deg); } /* 中间状态 */
-  100% { transform: translateX(200px); }
-}
-```
-
-#### 步骤2：应用动画
-语法：`animation: 动画名 持续时间 延迟时间 速度曲线 重复次数 方向 停止状态;`
-| 取值 | 作用 | 示例 |
-|------|------|------|
-| 动画名 | 对应`@keyframes`定义的名称 | `animation-name: move;` |
-| 持续时间 | 动画执行时间（单位：s/ms，必写） | `animation-duration: 1s;` |
-| 延迟时间 | 动画延迟开始时间 | `animation-delay: 0.5s;` |
-| 速度曲线 | 动画速度变化 | `linear`（匀速）、`ease`（默认）、`steps(n, start/end)`（分步动画，n为步数） |
-| 重复次数 | 动画执行次数 | `infinite`（无限次）、`3`（执行3次） |
-| 方向 | 动画执行方向 | `normal`（默认，正向）、`alternate`（往复执行，正向→反向→正向...） |
-| 停止状态 | 动画结束后停留的状态 | `forwards`（停留于结束状态）、`backwards`（停留于开始状态） |
-
-示例：
-```css
-.box {
-  animation: move 1s linear 0.2s infinite alternate forwards;
-}
-```
-
-#### 控制动画播放/暂停
-```css
-/* 暂停动画 */
-.box:hover {
-  animation-play-state: paused;
-}
-/* 继续播放 */
-.box:active {
-  animation-play-state: running;
-}
-```
-
-### 5. 媒体查询（响应式布局核心）
-语法：`@media 媒体类型 and (条件) { 样式 }`
-- 媒体类型：`screen`（屏幕，常用，可省略）、`print`（打印）
-- 条件：常用`max-width`（最大宽度，小于等于该值时生效）、`min-width`（最小宽度，大于等于该值时生效）
-
-示例（响应式适配不同屏幕宽度）：
-```css
-/* 屏幕宽度≤1200px时生效 */
-@media (max-width: 1200px) {
-  .container {
-    width: 900px;
-  }
-}
-
-/* 屏幕宽度在992px~1200px之间时生效（闭合区间） */
-@media (min-width: 992px) and (max-width: 1200px) {
-  .container {
-    width: 900px;
-  }
-}
-
-/* 屏幕宽度≤768px（手机端）时生效 */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    padding: 0 10px;
-  }
-}
-```
-
-## 八、Less预处理（CSS增强工具）
-### 1. 基础语法
-#### 变量（`@`定义，复用值）
-```less
-// 定义变量（可存储颜色、尺寸等）
-@primary-color: #ff4400;
-@base-font-size: 16px;
-
-// 使用变量
-.box {
-  color: @primary-color;
-  font-size: @base-font-size;
-}
-```
-
-#### 运算（支持`+`/`-`/`*`/`/`，注意`/`需加括号）
-```less
-@width: 200px;
-.box {
-  width: @width - 50; // 150px（单位可省略，需统一）
-  height: (@width / 2); // 100px（除法需加括号）
-  font-size: @base-font-size * 1.2; // 19.2px
-}
-```
-
-#### 导入文件（`@import`，合并多个Less文件）
-```less
-// 导入其他Less文件（可省略.less后缀）
-@import "base"; // 导入base.less
-@import "component/button"; // 导入component目录下的button.less
-```
-
-#### 嵌套（减少选择器层级，更清晰）
-```less
-// 嵌套写法（对应CSS：.nav .link）
-.nav {
-  width: 100%;
-  .link {
-    color: #333;
-    &:hover { // &代表父选择器（.nav .link:hover）
-      color: @primary-color;
-    }
-  }
-}
-```
-
-### 2. 编译与使用
-- 需安装编译工具（如VSCode插件`Easy Less`），自动将`.less`文件编译为`.css`文件
-- 项目中引入编译后的`.css`文件使用
