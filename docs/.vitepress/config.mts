@@ -89,7 +89,8 @@ export default defineConfig({
           text: '工具',
           items: [
             { text: 'Git常用指令', link: '/notes/git' },
-            { text: 'npm常用指令', link: '/notes/npm' }
+            { text: 'npm常用指令', link: '/notes/npm' },
+            { text: 'VitePress', link: '/notes/vitepress' }
           ]
         }
       ],
@@ -137,6 +138,6 @@ export default defineConfig({
           rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
-    }
+    },
   }
 })

@@ -1,9 +1,31 @@
-::: timeline 2023-04-24
-- 一个非常棒的开源项目 H5-Dooring 目前 star 3.1k
-    - 开源地址 https://github.com/MrXujiang/h5-Dooring
-    - 基本介绍 http://h5.dooring.cn/doc/zh/guide/
-- 《深入浅出webpack》 http://webpack.wuhaolin.cn/
-  :::
 
-::: timeline 2023-04-23
+::: timeline 2025-11-24
+- 添加vitepress框架
+  - 一款将 Markdown 文档快速转换为美观、高性能的文档站点框架。本项目使用的也是这个
+:::
+::: timeline 2025-10-31
+- 添加stencilJS框架
+  - 一款专门用于打造高质量组件库,生成web Components组件的框架
+- 对vue页面内容进行vue3版本整理合并
+  - 补充vue3内容缺失
+:::
+::: timeline 2025-7-03
+- 优化web页面,对内容进行拆分
+  - 针对web页面文档内容,过于乱的显现,进行npm, git工具内容进行拆分
+:::
+::: timeline 2025-6-30
+- 记录go学习笔记
+  - 记录学习的过程
+:::
+::: timeline 2025-5-14
+- 优化web页面,对内容进行拆分
+  - 针对web页面文档内容,过于乱的显现,进行node,jQuery内容进行拆分
+:::
+::: timeline 2025-5-13
+- 添加配置文件,修改样式
+  - 根据个人喜好添加样式与配置
+:::
+::: timeline 2024-4-27
+- 优化web页面,对内容进行拆分
+  - 针对web页面文档内容,过于乱的显现,进行html,css,js进行拆分
 :::
