@@ -90,7 +90,8 @@ export default defineConfig({
           items: [
             { text: 'Git常用指令', link: '/notes/git' },
             { text: 'npm常用指令', link: '/notes/npm' },
-            { text: 'VitePress', link: '/notes/vitepress' }
+            { text: 'VitePress', link: '/notes/vitepress' },
+            { text: 'Claude指令', link: '/notes/claude指令' }
           ]
         }
       ],
