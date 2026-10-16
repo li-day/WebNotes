@@ -127,7 +127,8 @@ export default defineConfig({
       md.use(timeline);
     },
   },
-  base: '/webNotes/',
+  base: '/WebNotes/',
+  outDir: 'dist',
   vite: {
     server: {
       host: '0.0.0.0',
